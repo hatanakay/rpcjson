@@ -46,6 +46,7 @@ class RPC
         # puts "Sending: #{body}"
 
         http = Net::HTTP.new(@uri.host, @uri.port)
+        http.use_ssl = true if @uri.scheme == 'https'
         request = Net::HTTP::Post.new(@uri.request_uri)
         if @uri.user != nil
           request.basic_auth(@uri.user, @uri.password)
